@@ -1,10 +1,12 @@
-package com.notsatria.noteapp
+package com.notsatria.noteapp.ui.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.notsatria.noteapp.R
+
 class AddNoteFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

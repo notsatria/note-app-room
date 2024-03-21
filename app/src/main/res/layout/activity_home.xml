@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="4dp"
-    tools:context=".HomeActivity">
+    tools:context=".ui.home.HomeActivity">
 
     <com.google.android.material.search.SearchBar
         android:id="@+id/searchBar"
