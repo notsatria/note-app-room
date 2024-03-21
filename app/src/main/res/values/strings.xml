@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Note App</string>
+    <string name="search_your_notes">Search your notes</string>
+    <string name="title">Title</string>
+    <string name="content">Ini adalah contoh content dari note yang sangat panjang ya ges ya. Jika anda melihat ini maka ya sudah</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="note">Note</string>
 </resources>
