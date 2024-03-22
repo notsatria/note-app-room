@@ -27,25 +27,42 @@ class AddNoteFragment : Fragment() {
     ): View? {
         _binding = FragmentAddNoteBinding.inflate(inflater, container, false)
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         val viewModel = obtainViewModel(requireActivity().application)
 
         val etTitle = binding.etTitle
         val etNote = binding.etNote
+
+        val dataNote = arguments?.getParcelable<NoteEntity>(NoteListFragment.EXTRA_NOTE)
+
+        if (dataNote != null) {
+            etTitle.setText(dataNote.title)
+            etNote.setText(dataNote.note)
+        }
 
         binding.fabSaveNote.setOnClickListener {
             if (etTitle.text.toString().isNotEmpty() || etNote.text.toString().isNotEmpty()) {
                 val title = etTitle.text.toString()
                 val note = etNote.text.toString()
                 val noteEntity = NoteEntity(null, title = title, note = note, date = DateHelper.getCurrentDate())
-                viewModel.insert(noteEntity)
+                if (dataNote != null) {
+                    noteEntity.id = dataNote.id
+                    viewModel.update(noteEntity)
+                    showToast(getString(R.string.success_update_note_message))
+                } else {
+                    viewModel.insert(noteEntity)
+                    showToast(getString(R.string.success_add_note_message))
+                }
                 it.findNavController().popBackStack()
-                showToast(getString(R.string.success_add_note_message))
             } else {
                 showToast(getString(R.string.empty_field_message))
             }
         }
-
-        return binding.root
     }
 
     override fun onDestroy() {
