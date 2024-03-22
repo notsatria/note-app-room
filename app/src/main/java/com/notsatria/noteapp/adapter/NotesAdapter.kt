@@ -11,6 +11,17 @@ import com.notsatria.noteapp.utils.NoteDiffCallback
 
 class NotesAdapter(val listNotes: List<NoteEntity>) : RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
 
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    interface OnItemClickCallback {
+        fun onItemClicked(view: View, note: NoteEntity)
+        fun onItemLongClicked(note: NoteEntity)
+    }
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     inner class ViewHolder(val binding: NoteItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(note: NoteEntity) {
             with(binding) {
@@ -28,5 +39,14 @@ class NotesAdapter(val listNotes: List<NoteEntity>) : RecyclerView.Adapter<Notes
     override fun getItemCount(): Int = listNotes.size
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(listNotes[position])
+
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(holder.itemView, listNotes[position])
+        }
+
+        holder.itemView.setOnLongClickListener {
+            onItemClickCallback.onItemLongClicked(listNotes[position])
+            true
+        }
     }
 }
