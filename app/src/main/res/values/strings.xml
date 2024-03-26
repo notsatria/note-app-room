@@ -6,4 +6,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="note">Note</string>
+    <string name="no_notes_found">No notes found</string>
+    <string name="success_update_note_message">Note updated</string>
+    <string name="success_add_note_message">Note added</string>
+    <string name="empty_field_message">Title/note empty</string>
 </resources>
