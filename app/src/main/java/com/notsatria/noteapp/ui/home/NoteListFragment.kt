@@ -82,7 +82,6 @@ class NoteListFragment : Fragment() {
         }
         )
     }
-
     private fun obtainViewModel(application: Application): HomeViewModel {
         val factory = ViewModelFactory.getInstance(application)
         return ViewModelProvider(requireActivity(), factory).get(HomeViewModel::class.java)

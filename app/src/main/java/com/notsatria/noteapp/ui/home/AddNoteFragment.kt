@@ -30,6 +30,7 @@ class AddNoteFragment : Fragment() {
         return binding.root
     }
 
+    @Suppress("DEPRECATION")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -45,7 +46,7 @@ class AddNoteFragment : Fragment() {
             etNote.setText(dataNote.note)
         }
 
-        binding.fabSaveNote.setOnClickListener {
+        binding.fabSaveNote.setOnClickListener { view ->
             if (etTitle.text.toString().isNotEmpty() || etNote.text.toString().isNotEmpty()) {
                 val title = etTitle.text.toString()
                 val note = etNote.text.toString()
@@ -58,7 +59,7 @@ class AddNoteFragment : Fragment() {
                     viewModel.insert(noteEntity)
                     showToast(getString(R.string.success_add_note_message))
                 }
-                it.findNavController().popBackStack()
+                view.findNavController().popBackStack()
             } else {
                 showToast(getString(R.string.empty_field_message))
             }
